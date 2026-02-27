@@ -18,10 +18,10 @@
 	width: 220px;
 	height: 100vh;
 	overflow-y: auto;
-	padding: 12px;
+	padding: 8px 12px 12px;
 	box-sizing: border-box;
 	border-right: 1px solid #d0d0d0;
-	background: #f7f7f7;
+	background: #003366; 
 }
 
 .menu-item {
@@ -42,23 +42,29 @@
 .run-button {
 	width: 100%;
 	text-align: center;
-	padding: 8px 10px;
-	border: 1px solid #2f8f2f;
-	background: #37b24d;
+	padding: 10px 12px;
+	border: none;
+	background: #2a8f2a; /* 更深的绿，区别于菜单项 */
 	color: #ffffff;
 	cursor: pointer;
-	margin-bottom: 8px;
+	margin-bottom: 12px;
+	border-radius: 6px;
+	box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+	font-weight: 600;
 }
 
 .download-button {
 	width: 100%;
 	text-align: center;
-	padding: 8px 10px;
-	border: 1px solid #1a73e8;
-	background: #4285f4;
+	padding: 10px 12px;
+	border: none;
+	background: #5fb3f8; 
 	color: #ffffff;
 	cursor: pointer;
-	margin-bottom: 8px;
+	margin-bottom: 12px;
+	border-radius: 8px;
+	box-shadow: 0 4px 10px rgba(0,0,0,0.10);
+	font-weight: 700;
 }
 
 .page-container {
