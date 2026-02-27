@@ -1,7 +1,4 @@
-/**
- * Helper routines used by multiple screen components.
- */
-
+import { DeviceLayout } from './screen-types';
 /**
  * Extract a named property from a PV800 property list array ("Key: Value").
  */
@@ -34,5 +31,18 @@ export function parseColor(value: string | undefined): string {
   const red = normalized & 0xff;
 
   return `rgb(${red}, ${green}, ${blue})`;
+}
+
+export function getDeviceLayout(propertyList: string[] | null | undefined): DeviceLayout {
+  return {
+    left: parseNumber(getProperty(propertyList, 'Left'), 0),
+    top: parseNumber(getProperty(propertyList, 'Top'), 0),
+    width: parseNumber(getProperty(propertyList, 'Width'), 120),
+    height: parseNumber(getProperty(propertyList, 'Height'), 40),
+    backgroundColor: parseColor(getProperty(propertyList, 'Background Color')),
+    borderColor: parseColor(getProperty(propertyList, 'Border Color')),
+    borderWidth: parseNumber(getProperty(propertyList, 'Border Width'), 3),
+    fontSize: parseNumber(getProperty(propertyList, 'Font Size'), 14),
+  };
 }
 

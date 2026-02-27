@@ -1,8 +1,8 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ConfigBox, BoxSection } from '../../controls/config-box/config-box';
-import { ScreenFile, ScreenConfig, PanelDeviceInfo, RenderDevice } from '../screen-types';
-import { getProperty, parseNumber, parseColor } from '../screen-utils';
+import { ScreenFile, ScreenConfig, PanelDeviceInfo, RenderDevice, DeviceLayout } from '../screen-types';
+import { getProperty, parseNumber, parseColor, getDeviceLayout } from '../screen-utils';
 import { fetchScreenConfig } from '../screen-loader';
 
 @Component({
@@ -55,18 +55,19 @@ export class MenuScreen1 {
     return screen.PanelDevicesInfos
       .filter((item: PanelDeviceInfo) => item.PanelDeviceType === 'MOGotoScreen' || item.PanelDeviceType === 'MOGotoConfig')
       .map((item: PanelDeviceInfo) => {
-        const propertyList = item.PanelDevicePropertyValueList;
+          const propertyList = item.PanelDevicePropertyValueList;
+        const layout: DeviceLayout = getDeviceLayout(propertyList);
 
         return {
           name: item.PanelDeviceName,
-          left: parseNumber(getProperty(propertyList, 'Left'), 0),
-          top: parseNumber(getProperty(propertyList, 'Top'), 0),
-          width: parseNumber(getProperty(propertyList, 'Width'), 120),
-          height: parseNumber(getProperty(propertyList, 'Height'), 40),
-          backgroundColor: parseColor(getProperty(propertyList, 'Background Color')),
-          borderColor: parseColor(getProperty(propertyList, 'Border Color')),
-          borderWidth: parseNumber(getProperty(propertyList, 'Border Width'), 3),
-          fontSize: parseNumber(getProperty(propertyList, 'Font Size'), 14),
+          left: layout.left,
+          top: layout.top,
+          width: layout.width,
+          height: layout.height,
+          backgroundColor: layout.backgroundColor,
+          borderColor: layout.borderColor,
+          borderWidth: layout.borderWidth,
+          fontSize: layout.fontSize,
           sections: [
             {
               text: getProperty(propertyList, 'Text') ?? '',

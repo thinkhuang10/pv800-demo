@@ -17,6 +17,17 @@ export interface PanelDeviceInfo {
   PanelDeviceChildren: string[][] | null;
 }
 
+export interface DeviceLayout {
+  left: number;
+  top: number;
+  width: number;
+  height: number;
+  backgroundColor: string;
+  borderColor: string;
+  borderWidth: number;
+  fontSize: number;
+}
+
 export interface RenderDevice {
   name: string;
   left: number;

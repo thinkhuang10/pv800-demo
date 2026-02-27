@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, computed, inject, signal } from '@angular/core';
 import { ConfigBox, BoxSection } from '../../controls/config-box/config-box';
-import { ScreenFile, ScreenConfig, PanelDeviceInfo, RenderDevice } from '../screen-types';
-import { getProperty, parseNumber, parseColor } from '../screen-utils';
+import { ScreenFile, ScreenConfig, PanelDeviceInfo, RenderDevice, DeviceLayout } from '../screen-types';
+import { getProperty, parseNumber, parseColor, getDeviceLayout } from '../screen-utils';
 import { fetchScreenConfig } from '../screen-loader';
 
 @Component({
@@ -76,14 +76,15 @@ export class ListIndicatorScreen {
         item.PanelDeviceType === 'MOMomentaryPushButton',
       )
       .map((item: PanelDeviceInfo) => {
-        const left = parseNumber(getProperty(item.PanelDevicePropertyValueList, 'Left'), 0);
-        const top = parseNumber(getProperty(item.PanelDevicePropertyValueList, 'Top'), 0);
-        const width = parseNumber(getProperty(item.PanelDevicePropertyValueList, 'Width'), 120);
-        const height = parseNumber(getProperty(item.PanelDevicePropertyValueList, 'Height'), 40);
-        const backgroundColor = parseColor(getProperty(item.PanelDevicePropertyValueList, 'Background Color'));
-        const borderColor = parseColor(getProperty(item.PanelDevicePropertyValueList, 'Border Color'));
-        const borderWidth = parseNumber(getProperty(item.PanelDevicePropertyValueList, 'Border Width'), 3);
-        const fontSize = parseNumber(getProperty(item.PanelDevicePropertyValueList, 'Font Size'), 14);
+        const layout: DeviceLayout = getDeviceLayout(item.PanelDevicePropertyValueList);
+        const left = layout.left;
+        const top = layout.top;
+        const width = layout.width;
+        const height = layout.height;
+        const backgroundColor = layout.backgroundColor;
+        const borderColor = layout.borderColor;
+        const borderWidth = layout.borderWidth;
+        const fontSize = layout.fontSize;
 
         return {
           name: item.PanelDeviceName,

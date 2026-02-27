@@ -46,13 +46,13 @@ export class App {
   }
 
   /**
-   * 下载 Screens.json 文件到本地
+   * Download the Screens.json file to the local machine
    */
   downloadScreens(): void {
     fetch('assets/project-json/Screens.json')
       .then(resp => {
         if (!resp.ok) {
-          throw new Error('无法下载配置');
+          throw new Error('Unable to download configuration');
         }
         return resp.blob();
       })

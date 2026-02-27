@@ -1,6 +1,6 @@
 <section class="screen-area" [style.background-color]="screenBackground()">
   @if (!screenLoaded()) {
-    <div class="loading">正在读取 Screens.json ...</div>
+    <div class="loading">Loading Screens.json ...</div>
   }
 
   @for (item of boxItems(); track item.name) {
