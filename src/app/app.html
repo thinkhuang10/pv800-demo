@@ -7,16 +7,18 @@
     <aside class="menu">
       <button class="run-button" type="button" (click)="runCurrentPage()">运行</button>
       <button class="download-button" type="button" (click)="downloadScreens()">下载</button>
-      @for (item of menuItems(); track item.key) {
-        <button
-          class="menu-item"
-          [class.active]="item.key === selectedPageKey()"
-          type="button"
-          (click)="selectPage(item.key)"
-        >
-          {{ item.label }}
-        </button>
-      }
+      <div class="menu-list">
+        @for (item of menuItems(); track item.key) {
+          <button
+            class="menu-item"
+            [class.active]="item.key === selectedPageKey()"
+            type="button"
+            (click)="selectPage(item.key)"
+          >
+            {{ item.label }}
+          </button>
+        }
+      </div>
     </aside>
 
     <section class="page-container">

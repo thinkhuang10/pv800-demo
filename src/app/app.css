@@ -27,16 +27,32 @@
 .menu-item {
 	width: 100%;
 	text-align: left;
-	padding: 8px 10px;
-	border: 1px solid #d5d5d5;
-	background: #ffffff;
+	padding: 10px 12px;
+	border-radius: 6px;
+	background: transparent;
+	color: #ffffff;
 	cursor: pointer;
 	margin-bottom: 8px;
+	border: none;
 }
 
 .menu-item.active {
-	border-color: #9caeff;
-	background: #edf1ff;
+	background: rgba(255,255,255,0.26); /* 更明显的选中背景 */
+	font-weight: 700;
+	box-shadow: inset 6px 0 0 #ff9800; /* 更醒目的橙色强调条 */
+	filter: drop-shadow(0 6px 10px rgba(0,0,0,0.06));
+}
+
+/* 首两个菜单项默认不突出显示，和其他项一致 */
+.menu-list .menu-item:first-child,
+.menu-list .menu-item:nth-child(2) {
+	background: transparent;
+	box-shadow: none;
+}
+
+.menu-list .menu-item:hover {
+	background: rgba(255,255,255,0.06);
+	transform: translateY(-0.5px);
 }
 
 .run-button {
