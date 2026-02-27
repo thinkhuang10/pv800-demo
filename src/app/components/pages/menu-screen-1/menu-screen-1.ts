@@ -1,7 +1,9 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { ConfigBox, BoxSection } from '../../controls/config-box/config-box';
 import { ScreenFile, ScreenConfig, PanelDeviceInfo, RenderDevice } from '../screen-types';
 import { getProperty, parseNumber, parseColor } from '../screen-utils';
+import { fetchScreenConfig } from '../screen-loader';
 
 @Component({
   selector: 'app-menu-screen-1',
@@ -10,6 +12,8 @@ import { getProperty, parseNumber, parseColor } from '../screen-utils';
   styleUrl: './menu-screen-1.css',
 })
 export class MenuScreen1 {
+  private readonly http = inject(HttpClient);
+
   readonly screenBackground = signal('#d8d8d8');
   readonly renderDevices = signal<RenderDevice[]>([]);
   readonly screenLoaded = signal(false);
@@ -28,29 +32,23 @@ export class MenuScreen1 {
     this.loadScreenConfig();
   }
 
-  private async loadScreenConfig(): Promise<void> {
-    try {
-      const response = await fetch('assets/project-json/Screens.json');
-      if (!response.ok) {
+  private loadScreenConfig(): void {
+    fetchScreenConfig(this.http, 'MenuScreen_1').subscribe({
+      next: (screen: ScreenConfig | undefined) => {
+        if (!screen) {
+          this.screenLoaded.set(true);
+          return;
+        }
+
+        const backgroundColor = parseColor(getProperty(screen.ScreenPropertyValueList, 'Background Color'));
+        this.screenBackground.set(backgroundColor);
+        this.renderDevices.set(this.mapScreenToDevices(screen));
         this.screenLoaded.set(true);
-        return;
-      }
-
-      const config = (await response.json()) as ScreenFile;
-      const screen = config.Screens.find((item: ScreenConfig) => item.ScreenName === 'MenuScreen_1');
-
-      if (!screen) {
+      },
+      error: () => {
         this.screenLoaded.set(true);
-        return;
-      }
-
-      const backgroundColor = parseColor(getProperty(screen.ScreenPropertyValueList, 'Background Color'));
-      this.screenBackground.set(backgroundColor);
-      this.renderDevices.set(this.mapScreenToDevices(screen));
-      this.screenLoaded.set(true);
-    } catch {
-      this.screenLoaded.set(true);
-    }
+      },
+    });
   }
 
   private mapScreenToDevices(screen: ScreenConfig): RenderDevice[] {

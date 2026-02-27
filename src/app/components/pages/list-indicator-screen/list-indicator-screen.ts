@@ -3,6 +3,7 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { ConfigBox, BoxSection } from '../../controls/config-box/config-box';
 import { ScreenFile, ScreenConfig, PanelDeviceInfo, RenderDevice } from '../screen-types';
 import { getProperty, parseNumber, parseColor } from '../screen-utils';
+import { fetchScreenConfig } from '../screen-loader';
 
 @Component({
   selector: 'app-list-indicator-screen',
@@ -32,10 +33,8 @@ export class ListIndicatorScreen {
   }
 
   private loadScreenConfig(): void {
-    this.http.get<ScreenFile>('assets/project-json/Screens.json').subscribe({
-      next: config => {
-        const screen = config.Screens.find((item: ScreenConfig) => item.ScreenName === 'ListIndicatorScreen');
-
+    fetchScreenConfig(this.http, 'ListIndicatorScreen').subscribe({
+      next: (screen: ScreenConfig | undefined) => {
         if (!screen) {
           this.screenLoaded.set(true);
           return;

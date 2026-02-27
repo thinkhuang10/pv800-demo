@@ -35,3 +35,4 @@ export function parseColor(value: string | undefined): string {
 
   return `rgb(${red}, ${green}, ${blue})`;
 }
+
