@@ -45,6 +45,30 @@ export class App {
     window.open(target.toString(), '_blank', 'noopener,noreferrer');
   }
 
+  /**
+   * 下载 Screens.json 文件到本地
+   */
+  downloadScreens(): void {
+    fetch('assets/project-json/Screens.json')
+      .then(resp => {
+        if (!resp.ok) {
+          throw new Error('无法下载配置');
+        }
+        return resp.blob();
+      })
+      .then(blob => {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'Screens.json';
+        a.click();
+        URL.revokeObjectURL(url);
+      })
+      .catch(() => {
+        // ignore errors for now
+      });
+  }
+
   private async loadMenuFromScreens(): Promise<void> {
     try {
       const response = await fetch('assets/project-json/Screens.json');
