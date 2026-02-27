@@ -1,0 +1,55 @@
+:host {
+	display: block;
+}
+
+.run-layout {
+	padding: 0;
+	margin: 0;
+}
+
+.layout {
+	display: flex;
+	align-items: flex-start;
+	gap: 16px;
+	font-family: Arial, sans-serif;
+}
+
+.menu {
+	width: 220px;
+	min-height: 520px;
+	padding: 12px;
+	box-sizing: border-box;
+	border-right: 1px solid #d0d0d0;
+	background: #f7f7f7;
+}
+
+.menu-item {
+	width: 100%;
+	text-align: left;
+	padding: 8px 10px;
+	border: 1px solid #d5d5d5;
+	background: #ffffff;
+	cursor: pointer;
+	margin-bottom: 8px;
+}
+
+.menu-item.active {
+	border-color: #9caeff;
+	background: #edf1ff;
+}
+
+.run-button {
+	width: 100%;
+	text-align: center;
+	padding: 8px 10px;
+	border: 1px solid #2f8f2f;
+	background: #37b24d;
+	color: #ffffff;
+	cursor: pointer;
+	margin-bottom: 8px;
+}
+
+.page-container {
+	display: flex;
+	flex-direction: column;
+}

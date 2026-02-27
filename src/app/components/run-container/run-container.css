@@ -1,0 +1,49 @@
+.frame-shell {
+  position: relative;
+  width: 800px;
+  height: 480px;
+  box-sizing: border-box;
+}
+
+.frame-overlay {
+  position: absolute;
+  inset: 0;
+  border: 1.5px solid #d81844;
+  border-radius: 0;
+  box-sizing: border-box;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.corner {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-color: #d81844;
+  border-style: solid;
+  box-sizing: border-box;
+}
+
+.corner-tl {
+  top: -4px;
+  left: -4px;
+  border-width: 4px 0 0 4px;
+}
+
+.corner-tr {
+  top: -4px;
+  right: -4px;
+  border-width: 4px 4px 0 0;
+}
+
+.corner-bl {
+  bottom: -4px;
+  left: -4px;
+  border-width: 0 0 4px 4px;
+}
+
+.corner-br {
+  bottom: -4px;
+  right: -4px;
+  border-width: 0 4px 4px 0;
+}

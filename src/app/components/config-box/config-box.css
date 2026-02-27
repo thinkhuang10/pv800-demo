@@ -1,0 +1,24 @@
+:host {
+  display: block;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-style: solid;
+  box-sizing: border-box;
+}
+
+.box.row {
+  flex-direction: row;
+}
+
+.section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  line-height: 1;
+}
