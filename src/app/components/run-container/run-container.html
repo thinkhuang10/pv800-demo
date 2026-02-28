@@ -1,11 +1,7 @@
 <div class="frame-shell">
-  @if (pageKey === 'menu-screen-1') {
-    <app-menu-screen-1></app-menu-screen-1>
-  } @else {
-    <app-list-indicator-screen></app-list-indicator-screen>
-  }
+  <app-screen-engine [screenName]="screenName()"></app-screen-engine>
 
-  @if (showFrame) {
+  @if (showFrame()) {
     <div class="frame-overlay" aria-hidden="true">
       <span class="corner corner-tl"></span>
       <span class="corner corner-tr"></span>

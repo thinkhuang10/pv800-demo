@@ -1,16 +1,19 @@
-import { Component, Input } from '@angular/core';
-import { ListIndicatorScreen } from '../pages/list-indicator-screen/list-indicator-screen';
-import { MenuScreen1 } from '../pages/menu-screen-1/menu-screen-1';
+import { Component, input, computed } from '@angular/core';
+import { ScreenEngine } from '../pages/screen-engine';
 
 export type RunPageKey = 'menu-screen-1' | 'list-indicator-screen';
 
 @Component({
   selector: 'app-run-container',
-  imports: [MenuScreen1, ListIndicatorScreen],
+  imports: [ScreenEngine],
   templateUrl: './run-container.html',
   styleUrl: './run-container.css',
 })
 export class RunContainer {
-  @Input() pageKey: RunPageKey = 'list-indicator-screen';
-  @Input() showFrame = true;
+  pageKey = input<RunPageKey>('list-indicator-screen');
+  showFrame = input<boolean>(true);
+
+  readonly screenName = computed(() =>
+    this.pageKey() === 'menu-screen-1' ? 'MenuScreen_1' : 'ListIndicatorScreen',
+  );
 }
