@@ -30,6 +30,7 @@ export interface DeviceLayout {
 
 export interface RenderDevice {
   name: string;
+  type: string;
   left: number;
   top: number;
   width: number;

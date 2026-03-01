@@ -10,14 +10,38 @@
       [style.top.px]="item.top"
       [style.background-color]="item.backgroundColor"
     >
-      <app-mogoto-config
-        [width]="item.width"
-        [height]="item.height"
-        [fontSize]="item.fontSize"
-        [borderColor]="item.borderColor"
-        [borderWidth]="item.borderWidth"
-        [sections]="item.sections"
-      ></app-mogoto-config>
+      @switch (item.type) {
+        @case ('MOGotoConfig') {
+          <app-mogoto-config
+            [width]="item.width"
+            [height]="item.height"
+            [fontSize]="item.fontSize"
+            [borderColor]="item.borderColor"
+            [borderWidth]="item.borderWidth"
+            [sections]="item.sections"
+          ></app-mogoto-config>
+        }
+        @case ('MOGotoScreen') {
+          <app-mogoto-screen
+            [width]="item.width"
+            [height]="item.height"
+            [fontSize]="item.fontSize"
+            [borderColor]="item.borderColor"
+            [borderWidth]="item.borderWidth"
+            [sections]="item.sections"
+          ></app-mogoto-screen>
+        }
+        @default {
+          <app-mogoto-config
+            [width]="item.width"
+            [height]="item.height"
+            [fontSize]="item.fontSize"
+            [borderColor]="item.borderColor"
+            [borderWidth]="item.borderWidth"
+            [sections]="item.sections"
+          ></app-mogoto-config>
+        }
+      }
     </div>
   }
 </section>

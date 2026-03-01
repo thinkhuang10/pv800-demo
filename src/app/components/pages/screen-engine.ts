@@ -1,6 +1,7 @@
 import { Component, Input, computed, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { MOGotoConfig } from '../controls/mogoto-config/mogoto-config';
+import { MOGotoScreen } from '../controls/mogoto-screen/mogoto-screen';
 import { ScreenConfig } from './screen-types';
 import { fetchScreenConfig } from './screen-loader';
 import { mapScreenToDevices } from './screen-mapper';
@@ -8,7 +9,7 @@ import { parseColor, getProperty } from './screen-utils';
 
 @Component({
   selector: 'app-screen-engine',
-  imports: [MOGotoConfig],
+  imports: [MOGotoConfig, MOGotoScreen],
   templateUrl: './screen-engine.html',
   styleUrl: './screen-engine.css',
 })

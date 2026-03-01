@@ -42,6 +42,7 @@ export function mapScreenToDevices(screen: ScreenConfig): RenderDevice[] {
 
       return {
         name: item.PanelDeviceName,
+        type: item.PanelDeviceType,
         left: layout.left,
         top: layout.top,
         width: layout.width,
