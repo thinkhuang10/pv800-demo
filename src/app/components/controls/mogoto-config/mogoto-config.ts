@@ -38,12 +38,12 @@ export interface MOGotoConfigProps {
 }
 
 @Component({
-  selector: 'app-config-box',
+  selector: 'app-mogoto-config',
   standalone: true,
-  templateUrl: './config-box.html',
-  styleUrl: './config-box.css',
+  templateUrl: './mogoto-config.html',
+  styleUrl: './mogoto-config.css',
 })
-export class ConfigBox {
+export class MOGotoConfig {
   @Input() width = 170;
   @Input() height = 110;
   @Input() borderColor = '#0b1ddf';

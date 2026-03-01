@@ -1,4 +1,4 @@
-import { BoxSection } from '../controls/config-box/config-box';
+import { BoxSection } from '../controls/mogoto-config/mogoto-config';
 
 export interface ScreenFile {
   Screens: ScreenConfig[];
