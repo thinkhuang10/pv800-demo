@@ -20,6 +20,16 @@ export function parseNumber(value: string | undefined, fallback: number): number
 }
 
 /**
+ * Convert PV800 font size to CSS pixel size for consistent display in Angular
+ * 根据实际显示效果调整转换逻辑
+ */
+export function convertFontSize(pv800FontSize: number): number {
+  // 调整转换系数，使字体大小与实际显示效果一致
+  // 经过测试，使用0.75的系数可以使字体大小更接近预期
+  return pv800FontSize * 0.75;
+}
+
+/**
  * Convert a PV800 decimal color value into an RGB CSS string.
  */
 export function parseColor(value: string | undefined): string {
@@ -34,6 +44,7 @@ export function parseColor(value: string | undefined): string {
 }
 
 export function getDeviceLayout(propertyList: string[] | null | undefined): DeviceLayout {
+  const pv800FontSize = parseNumber(getProperty(propertyList, 'Font Size'), 14);
   return {
     left: parseNumber(getProperty(propertyList, 'Left'), 0),
     top: parseNumber(getProperty(propertyList, 'Top'), 0),
@@ -42,7 +53,6 @@ export function getDeviceLayout(propertyList: string[] | null | undefined): Devi
     backgroundColor: parseColor(getProperty(propertyList, 'Background Color')),
     borderColor: parseColor(getProperty(propertyList, 'Border Color')),
     borderWidth: parseNumber(getProperty(propertyList, 'Border Width'), 3),
-    fontSize: parseNumber(getProperty(propertyList, 'Font Size'), 14),
+    fontSize: convertFontSize(pv800FontSize),
   };
 }
-
