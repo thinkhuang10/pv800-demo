@@ -1,0 +1,21 @@
+<div 
+  class="box-container" 
+  [style.width.px]="width"
+  [style.height.px]="height"
+  [style.border-color]="borderColor"
+  [style.border-width.px]="borderWidth"
+  [style.backgroundColor]="backgroundColor"
+  [style.flex-direction]="direction"
+>
+  @for (section of renderedSections; track $index) {
+    <div 
+      class="box-section"
+      [style.backgroundColor]="section.bgColor"
+      [style.color]="section.color || textColor"
+      [style.flex]="section.flex || 1"
+      [style.font-size.px]="fontSize"
+    >
+      {{ section.text }}
+    </div>
+  }
+</div>

@@ -31,6 +31,36 @@
             [sections]="item.sections"
           ></app-mogoto-screen>
         }
+        @case ('MONumericEntry') {
+          <app-monumeric-entry
+            [width]="item.width"
+            [height]="item.height"
+            [fontSize]="item.fontSize"
+            [borderColor]="item.borderColor"
+            [borderWidth]="item.borderWidth"
+            [sections]="item.sections"
+          ></app-monumeric-entry>
+        }
+        @case ('MOMomentaryPushButton') {
+          <app-momentary-push-button
+            [width]="item.width"
+            [height]="item.height"
+            [fontSize]="item.fontSize"
+            [borderColor]="item.borderColor"
+            [borderWidth]="item.borderWidth"
+            [sections]="item.sections"
+          ></app-momentary-push-button>
+        }
+        @case ('MOListIndicator') {
+          <app-molist-indicator
+            [width]="item.width"
+            [height]="item.height"
+            [fontSize]="item.fontSize"
+            [borderColor]="item.borderColor"
+            [borderWidth]="item.borderWidth"
+            [sections]="item.sections"
+          ></app-molist-indicator>
+        }
         @default {
           <app-mogoto-config
             [width]="item.width"

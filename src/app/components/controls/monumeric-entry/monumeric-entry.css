@@ -1,0 +1,15 @@
+.box-container {
+  display: flex;
+  border: 1px solid;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.box-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  box-sizing: border-box;
+  text-align: center;
+}
